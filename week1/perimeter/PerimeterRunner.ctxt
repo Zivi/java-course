@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=PerimeterRunner
+comment1.params=s
+comment1.target=double\ getPerimeter(edu.duke.Shape)
+comment10.params=
+comment10.target=java.lang.String\ getFileWithLargestPerimeter()
+comment11.params=args
+comment11.target=void\ main(java.lang.String[])
+comment2.params=S
+comment2.target=int\ getNumPoints(edu.duke.Shape)
+comment3.params=length\ points
+comment3.target=double\ getAverageLength(double,\ int)
+comment4.params=S
+comment4.target=double\ getLargestSide(edu.duke.Shape)
+comment5.params=S
+comment5.target=int\ getLargestX(edu.duke.Shape)
+comment6.params=
+comment6.target=void\ testPerimeter()
+comment7.params=
+comment7.target=void\ testPerimeterMultipleFiles()
+comment8.params=
+comment8.target=double\ getLargestPerimeterMultipleFiles()
+comment9.params=
+comment9.target=void\ testFileWithLargestPerimeter()
+numComments=12
