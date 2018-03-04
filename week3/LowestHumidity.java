@@ -26,13 +26,16 @@ public class LowestHumidity {
         return lowestSoFar;
     }
     public CSVRecord lowestInManyFiles() {
-       CSVRecord lowestRow = null; 
+       CSVRecord lowestRowInCurrentFile = null;
+       CSVRecord lowestSoFar = null;
        DirectoryResource dr = new DirectoryResource();
        for (File f : dr.selectedFiles()) {
             FileResource fr = new FileResource(f);
-            lowestRow = lowestHumidityInFile(fr.getCSVParser());
+            lowestRowInCurrentFile = lowestHumidityInFile(fr.getCSVParser());
+            // compare lowestRow with currentLowestRow
+            lowestSoFar = getLowestOfTwo(lowestRowInCurrentFile, lowestSoFar);
        }
-       return lowestRow;
+       return lowestSoFar;
     }
     public void testLowestHumidityInFile() {
         FileResource fr = new FileResource();

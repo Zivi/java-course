@@ -37,7 +37,7 @@ public class WhichCountriesExport {
     public void listExportsTwoProducts(CSVParser parser, String exportItem1, String exportItem2) {
         for (CSVRecord record: parser) {
             String export = record.get("Exports");
-            if (export.contains(exportItem1) || export.contains(exportItem2)) {
+            if (export.contains(exportItem1) && export.contains(exportItem2)) {
                 System.out.println(record.get("Country"));
             }
         }
@@ -86,8 +86,8 @@ public class WhichCountriesExport {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
         //countryInfo(parser, "Nauru");
-        //listExportsTwoProducts(parser, "gold", "diamonds");
-        //numberOfExporters(parser, "sugar");
+        //listExportsTwoProducts(parser, "cotton", "flowers");
+        //numberOfExporters(parser, "cocoa");
         bigExporters(parser, "$999,999,999,999");
     }
 }
