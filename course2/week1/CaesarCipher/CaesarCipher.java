@@ -42,7 +42,6 @@ public class CaesarCipher {
             String letter1 = encrypt(input.substring(i, i+1), key1);
             char charLetter1 = letter1.charAt(0);
             encrypted.setCharAt(i, charLetter1);
-            
             if (i + 1 < encrypted.length()) {
                 String letter2 = encrypt(input.substring(i+1), key2);
                 char charLetter2 = letter2.charAt(0);
@@ -50,27 +49,71 @@ public class CaesarCipher {
             }
         }
         return encrypted.toString();
-        
-        // call encrypt for input with key1 to return a string
-        // apply the new letter from encrypt to  the new sgring
-        // call encrypt for input with key2 to return a string
-        
-        
+    }
+
+    public int[] countLetters(String encrypted) {
+        String alph = "abcdefghijklmnopqrstuvwxyz";
+        int[] counts = new int[26];
+        for (int k = 0; k < encrypted.length(); k++) {
+            char ch = Character.toLowerCase(encrypted.charAt(k));
+            int dex = alph.indexOf(ch);
+            if (dex != -1) {
+                counts[dex] += 1;
+            }
+        }
+        return counts;
+    }
+    
+    public int maxIndex(int[] vals) {
+        int maxDex = 0;
+        for (int k = 0; k < vals.length; k++) {
+            if (vals[k] > vals[maxDex]) {
+                maxDex = k;
+            }
+        }
+        return maxDex;
+    }
+    
+    public String decrypt(String encrypted) {
+        CaesarCipher cc = new CaesarCipher();
+        int[] freqs = countLetters(encrypted);
+        int maxDex = maxIndex(freqs);
+        // location of letter 'e' assuming that e is the most frequently occuring letter
+        int dkey = maxDex - 4;
+        if (maxDex < 4) {
+            dkey = 26 - (4-maxDex);
+        }
+        System.out.println("key used in encryption: " + dkey);
+        return cc.encrypt(encrypted, 26-dkey);
+    }
+    public void eyeballDecrypt(String encrypted) {
+        CaesarCipher cipher = new CaesarCipher();
+        for (int k = 0; k < 26; k += 1) {
+            String s = cipher.encrypt(encrypted, k);
+            System.out.println(k + "\t" + s);
+        }
     }
     public void testCaesar() {
-        int key1 = 8;
-        int key2 = 21;
-        int key = 15;
-        FileResource fr = new FileResource();
-        String message = fr.asString();
+        //int key1 = 8;
+        //int key2 = 21;
+        //int key = 15;
+        //FileResource fr = new FileResource();
+        //String message = fr.asString();
         //String encrypted = encrypt(message, key);
         //System.out.println(encrypted);
         //String decrypted = encrypt(encrypted, 26-key);
         //System.out.println(decrypted);
         //~~~~
-        String encryptedTwoKey = encryptTwoKeys(message, key1, key2);
-        System.out.println(encryptedTwoKey);
+        //String encryptedTwoKey = encryptTwoKeys(message, key1, key2);
+        //System.out.println(encryptedTwoKey);
         // use case: cases of letters
+        
+        int key1 = 2;
+        int key2 = 20;
+        String message = "Top ncmy qkff vi vguv vbg ycpx";
+        String encryptedTwoKey = encryptTwoKeys(message, 26-key1, 26-key2);
+        System.out.println(encryptedTwoKey);
+        
     }
 }
 
